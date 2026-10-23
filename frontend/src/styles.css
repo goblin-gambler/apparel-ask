@@ -1,0 +1,106 @@
+/**
+ * 全局样式入口
+ * 加载 Tailwind 层并定义页面基础样式、纸张纹理与印章样式
+ */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    color-scheme: light;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    background: #f5f0e7;
+    overflow: hidden;
+}
+
+button,
+textarea {
+    font: inherit;
+}
+
+::selection {
+    background: rgba(166, 66, 50, 0.18);
+}
+
+/* 细颗粒纸纹，替代原先的点阵网格 */
+.grain {
+    opacity: 0.5;
+    background-image: radial-gradient(
+        circle at 1px 1px,
+        rgba(27, 26, 23, 0.14) 1px,
+        transparent 0
+    );
+    background-size: 16px 16px;
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), transparent 78%);
+}
+
+/* 朱砂印章：品牌落款 */
+.seal {
+    display: grid;
+    place-items: center;
+    border: 1.5px solid #a64232;
+    color: #a64232;
+    font-family: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1;
+    box-shadow: inset 0 0 0 2px rgba(166, 66, 50, 0.12);
+}
+
+/* 极细横线，用于分栏与列表分隔 */
+.hairline {
+    display: block;
+    background: linear-gradient(
+        to right,
+        rgba(27, 26, 23, 0.22),
+        rgba(27, 26, 23, 0.04)
+    );
+    height: 1px;
+}
+
+/* 滚动条收窄，避免打断纸面 */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(27, 26, 23, 0.22) transparent;
+}
+
+*::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: rgba(27, 26, 23, 0.2);
+}
+
+*::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
